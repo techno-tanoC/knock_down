@@ -17,12 +17,13 @@ async fn main() {
     // skip first arg, which is the command name myself.
     let command = std::env::args().skip(1).collect::<Vec<_>>().join(" ");
 
-    let _child = Command::new("sh")
+    let child = Command::new("sh")
         .arg("-c")
         .arg(command)
         .kill_on_drop(true)
         .spawn()
-        .expect("Failed to spawn command");
+        .expect("Failed to spawn command")
+        .wait_with_output();
 
     let mut listener = TcpListener::bind(("0.0.0.0", port)).await.unwrap();
     let accept = listener.accept();
@@ -30,6 +31,7 @@ async fn main() {
     let delay = delay_for(Duration::from_secs(timeout));
 
     tokio::select! {
+        _ = child => {}
         _ = accept => {}
         _ = delay => {}
     }
