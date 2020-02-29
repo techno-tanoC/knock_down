@@ -14,6 +14,7 @@ async fn main() {
         .parse::<u64>()
         .expect("Invalid TIMEOUT string");
 
+    // skip first arg, which is the command name myself.
     let command = std::env::args().skip(1).collect::<Vec<_>>().join(" ");
 
     let _child = Command::new("sh")
