@@ -4,12 +4,12 @@ use tokio::time::{delay_for, Duration};
 
 #[tokio::main]
 async fn main() {
-    let port = std::env::var("PORT")
+    let port = std::env::var("KNOCK_DOWN_PORT")
         .unwrap_or("7777".to_string())
         .parse::<u16>()
         .expect("Invalid PORT string");
 
-    let timeout = std::env::var("TIMEOUT")
+    let timeout = std::env::var("KNOCK_DOWN_TIMEOUT")
         .unwrap_or("600".to_string())
         .parse::<u64>()
         .expect("Invalid TIMEOUT string");
