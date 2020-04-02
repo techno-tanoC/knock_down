@@ -17,7 +17,7 @@ async fn main() {
     // skip first arg, which is the command name itself.
     let command = std::env::args().skip(1).collect::<Vec<_>>().join(" ");
 
-    let child = Command::new("sh")
+    let child = Command::new("/bin/sh")
         .arg("-c")
         .arg(command)
         .kill_on_drop(true)
