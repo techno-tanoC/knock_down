@@ -31,8 +31,14 @@ async fn main() {
     let delay = delay_for(Duration::from_secs(timeout));
 
     tokio::select! {
-        _ = child => {}
-        _ = accept => {}
-        _ = delay => {}
+        _ = child => {
+            println!("knock_down: stopped sub process");
+        }
+        _ = accept => {
+            println!("knock_down: knocked down");
+        }
+        _ = delay => {
+            println!("knock_down: timeout");
+        }
     }
 }
