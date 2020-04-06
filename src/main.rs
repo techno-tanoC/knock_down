@@ -14,7 +14,7 @@ async fn main() {
         .parse::<u64>()
         .expect("Invalid TIMEOUT string");
 
-    // skip first arg, which is the command name itself.
+    // skip first arg, which is the command 'knock_down' itself.
     let command = std::env::args().skip(1).collect::<Vec<_>>().join(" ");
 
     let child = Command::new("/bin/sh")
